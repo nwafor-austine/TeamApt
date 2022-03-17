@@ -1,0 +1,173 @@
+<main [class.minimized]="isMinimized">
+  <div>
+    <div class="header">
+      <div (click)="isMinimized === true ? isMinimized = false : isMinimized = true">
+        <img src="../assets/images/logo.png" alt="">
+        <h2>PJ</h2>
+      </div>
+
+      <i class="fa-solid fa-gauge" (click)="isMinimized === true ? isMinimized = false : isMinimized = true"></i>
+    </div>
+
+    <nav>
+      <div (click)="changeMenu('Dashboard')" [class.active]="title === 'Dashboard'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>Dashboard</span>
+      </div>
+
+      <div (click)="changeMenu('Analytics')" [class.active]="title === 'Analytics'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>Analytics</span>
+      </div>
+
+      <div (click)="changeMenu('Projects')" [class.active]="title === 'Projects'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>Projects</span>
+      </div>
+
+      <div (click)="changeMenu('Tracking')" [class.active]="title === 'Tracking'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>Tracking</span>
+      </div>
+
+      <div (click)="changeMenu('History')" [class.active]="title === 'History'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>History</span>
+      </div>
+
+      <div (click)="changeMenu('Settings')" [class.active]="title === 'Settings'">
+        <i class="fa-solid fa-gauge"></i>
+        <span>Settings</span>
+      </div>
+    </nav>
+
+    <div class="newTask">
+      <div>Create new task</div>
+      <i class="fa-solid fa-gauge"></i>
+    </div>
+
+    <div class="user">
+      <div>
+        <img src="../assets/images/userAvatar.png" alt="">
+        <div>
+          <strong>Augustine</strong>
+          <small>austine@outlook.com</small>
+        </div>
+      </div>
+      <i class="fa-solid fa-gauge"></i>
+    </div>
+  </div>
+
+
+  <div>
+    <header>
+      <div>
+        <strong>Project</strong>
+        <span class="divider"> > </span>
+        <span>{{title}}</span>
+      </div>
+
+      <div>
+        <div>
+          <i class="fa-solid fa-gauge"></i>
+          <i class="fa-solid fa-gauge"></i>
+        </div>
+        <div>
+          <img src="../assets/images/headerLogo.png" alt="">
+          <span>RonasIT</span>
+          <i class="fa-solid fa-gauge"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="row1">
+      <div>
+        <h3>{{title}}</h3>
+        <div class="progress">
+          <span>{{cumulativePercentage}}%</span>
+          <progress [value]="cumulativePercentage" max="100"></progress>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <button>
+            <i class="fa-solid fa-plus"></i>
+            <span>Invite</span>
+          </button>
+        </div>
+        <div class="otherUsers">
+          <img src="../assets/images/userAvatar.png" alt="">
+          <img src="../assets/images/userAvatar.png" alt="">
+          <img src="../assets/images/userAvatar.png" alt="">
+          <span>+15</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div>
+        <div>February 2021</div>
+        <div class="navigator">
+          <i class="fa-solid fa-angle-left"></i>
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+      <div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="month">
+          <span>Month</span>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="mainContainer">
+      <div class="mainContent">
+        <div>
+          <div class="numbering">
+            <div *ngFor="let date of allDates">
+              <span [class.today]="date === today">{{date}}</span>
+              <div *ngIf="date === today" class="dateLine">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+
+          </div>
+          <div class="timeZone">
+            <div *ngFor="let workItem of allWorkItems">
+              <div class="staffBadge">
+                <div>
+                  <img src="../assets/images/userAvatar.png" alt="">
+                  <div>
+                    <strong>{{workItem.name}}</strong>
+                    <small>{{workItem.department}}</small>
+                  </div>
+                </div>
+                <i class="fa-solid fa-gauge"></i>
+              </div>
+
+              <div class="timeLine">
+                <div class="durationDiv"
+                     [style.marginLeft]="workItem.startingPoint + '%'"
+                     [style.width]="workItem.duration + '%'"
+                     [style.background]="workItem.background[1]"
+                >
+                  <div class="completionDiv" [style.width]="workItem.percentageCompleted + '%'" [style.background]="workItem.background[0]">
+                    <div class="icon">
+                      <div></div>
+                    </div>
+                    <span>Flow Swift Transfer</span>
+                  </div>
+                  <span>{{workItem.percentageCompleted}}%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

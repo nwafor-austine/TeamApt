@@ -1,0 +1,397 @@
+* {
+  transition: width linear 500ms;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 250px auto;
+
+  &.minimized {
+    grid-template-columns: 80px auto;
+    >:first-child {
+      width: 80px;
+      nav {
+        span {
+          display: none;
+        }
+      }
+
+      .newTask {
+        display: none;
+      }
+
+      .user {
+        > div {
+          div {
+            display: none;
+          }
+        }
+        i {
+          display: none;
+        }
+      }
+    }
+  }
+
+  >:first-child {
+    background: #fcfcfc;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 40px;
+          height: auto;
+        }
+      }
+    }
+
+    nav {
+      margin-block: 40px;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-block: 7px;
+        margin-block: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+
+        &.active, &:hover {
+          color: #1b5afd;
+        }
+      }
+    }
+
+    .newTask {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #edf1fb;
+      padding: 20px;
+      border-radius: 20px;
+      font-size: 1.2em;
+      font-weight: 500;
+
+      i {
+        font-size: 1.5em;
+      }
+    }
+
+    .user {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 50px;
+
+      > div {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        img {
+          width: 40px;
+          height: auto;
+        }
+        div {
+          display: grid;
+        }
+      }
+    }
+  }
+
+  >:last-child {
+    background: #ffffff;
+    padding: 30px 50px;
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      >:first-child {
+        strong {
+          font-weight: 500;
+        }
+
+        span {
+          color: #a3a3a3;
+          font-weight: 500;
+          &.divider {
+            display: inline-block;
+            margin-inline: 10px;
+          }
+        }
+      }
+
+      >:last-child {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        >:first-child {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+
+        >:last-child {
+          border-left: solid #c4c4c4 2px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-left: 20px;
+          font-weight: 600;
+          img {
+            width: 30px;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    .row1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-block: 30px;
+
+      >:first-child {
+        h3 {
+          font-weight: 600;
+          font-size: 1.6em;
+          margin-block: 10px;
+        }
+
+        .progress {
+          color: #a3a3a3;
+          font-weight: 500;
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      >:last-child {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        button {
+          border: dashed grey;
+          background: white;
+          color: black;
+          padding: 13px 30px;
+          border-radius: 13px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .otherUsers {
+          display: flex;
+          img, span {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-left: -20px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            background: #131e3a;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .row2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      * {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      >:first-child {
+        gap: 20px;
+        align-items: center;
+
+        .navigator {
+          color: #a3a3a3;
+        }
+      }
+
+      >:last-child {
+        gap: 40px;
+        .month {
+          border: solid 2px #a3a3a3;
+          border-radius: 20px;
+          padding: 10px 20px;
+          width: 120px;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .mainContainer {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 50px;
+      .mainContent {
+        position: relative;
+        width: 100%;
+        min-width: 500px;
+        min-height: 500px;
+
+        > div {
+          position: relative;
+          width: inherit;
+          //background: red;
+          .numbering {
+            position: absolute;
+            margin-top: 10px;
+            width: 100%;
+            height: calc(100% - 10px);
+            overflow-y: hidden;
+            display: grid;
+            grid-template-columns: repeat(17, calc(100% / 17));
+
+            > div {
+              border-inline: solid 1px #f1f1f1;
+              box-sizing: border-box;
+              display: grid;
+              align-items: start;
+              align-content: start;
+              justify-content: center;
+              .today {
+                display: block;
+                width: 40px;
+                padding: 5px;
+                margin-top: -5px;
+                box-sizing: border-box;
+                border-radius: 10px;
+                background: #1b5afd;
+                color: white;
+                text-align: center;
+              }
+              .dateLine {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-content: start;
+                align-items: center;
+                justify-content: center;
+                z-index: 20;
+                >:first-child {
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 10px;
+                  background: #1b5afd;
+                }
+                >:last-child {
+                  display: block;
+                  border: solid #1b5afd 1px;
+                  background: #1b5afd;
+                  width: 1px;
+                  height: 100%;
+                }
+              }
+            }
+          }
+
+          .timeZone {
+            display: grid;
+            padding-top: 30px;
+            > div {
+              display: flex;
+              width: 100%;
+              position: relative;
+
+              .staffBadge {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: white;
+                border-radius: 10px;
+                padding: 5px 10px;
+                border: solid 1px #a3a3a3;
+                margin: 5px;
+                position: absolute;
+                z-index: 20;
+                min-width: 150px;
+
+                > div {
+                  display: flex;
+                  gap: 5px;
+                  align-items: center;
+                  img {
+                    width: 40px;
+                    height: auto;
+                  }
+                  div {
+                    display: grid;
+                  }
+                }
+              }
+
+              .timeLine {
+                width: 100%;
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+
+                .durationDiv {
+                  margin-left: calc((100% / 17) * 5);
+                  width: calc((100% / 17) * 6);
+                  border-radius: 50px;
+                  height: 80%;
+                  background: rgba(253, 126, 46, 0.3);
+                  display: flex;
+                  overflow: hidden;
+                  align-items: center;
+                  position: relative;
+
+                  .completionDiv {
+                    background: #fd7e2e;
+                    height: 100%;
+                    width: 65%;
+                    display: flex;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding: 20px;
+                    box-sizing: border-box;
+                    align-items: center;
+                    border-radius: 50px;
+                    position: relative;
+                  }
+
+                  > span {
+                    display: block;
+                    position: absolute;
+                    right: 10px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
